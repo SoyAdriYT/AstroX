@@ -1,4 +1,4 @@
--- This anti cheat bypass was made by Insano_22
+-- This anti cheat bypass was made by G - MX2 
 print("Blade Ball Anti Cheat Bypass Activated.")
 
 local antiCheatNames = {
