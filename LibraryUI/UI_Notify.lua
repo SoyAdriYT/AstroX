@@ -25,7 +25,7 @@ local ActiveColor = Color3.fromRGB(52, 152, 219);
 local ICONS = {
     Info = "rbxassetid://4057220511",
     Error = "rbxassetid://4057319805",
-    Success = "rbxassetid://5774307837",
+    Success = "rbxassetid://9073052584",
     Warn = "rbxassetid://5849784138"
 };
 
