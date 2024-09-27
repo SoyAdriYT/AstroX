@@ -1,22 +1,35 @@
-local nurysium_module = {}
+local AstroX_core = {}
 
-local Players = game:GetService("Players")
+local playerService = game:GetService("Players")
 
-local Services = {
-    game:GetService('AdService'),
-    game:GetService('SocialService')
+local activeServices = {
+    adService = game:GetService("AdService"),
+    socialService = game:GetService("SocialService")
 }
 
-function nurysium_module.isAlive(Entity)
-    return Entity.Character and workspace.Alive:FindFirstChild(Entity.Name) and workspace.Alive:FindFirstChild(Entity.Name).Humanoid.Health > 0
+function AstroX_core.checkEntityStatus(entity)
+    local characterModel = entity and entity.Character
+    local aliveFolder = workspace:FindFirstChild("Alive")
+
+    if characterModel and aliveFolder then
+        local aliveModel = aliveFolder:FindFirstChild(entity.Name)
+        local humanoid = aliveModel and aliveModel:FindFirstChildOfClass("Humanoid")
+        
+        if humanoid then
+            return humanoid.Health > 0
+        end
+    end
+    return false
 end
 
-function nurysium_module.getBall()
-    for index, ball in workspace:WaitForChild("Balls"):GetChildren() do
-        if ball:IsA("BasePart") and ball:GetAttribute("realBall") then
-            return ball
+function AstroX_core.findActiveBall()
+    local ballContainer = workspace:WaitForChild("Balls")
+    
+    for _, ballObject in pairs(ballContainer:GetChildren()) do
+        if ballObject:IsA("BasePart") and ballObject:GetAttribute("activeBall") then
+            return ballObject
         end
     end
 end
 
-return nurysium_module;
+return AstroX_core
